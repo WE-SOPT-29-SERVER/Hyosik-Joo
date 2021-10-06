@@ -1,6 +1,6 @@
-// WE SOPT SERVER Seminar 1 - Object
+// WE SOPT SERVER Seminar 1 - Assignment LEVEL 1. Object
 // by HYOSITIVE
-// LEVEL 1 Assignment
+// 2021.10.06
 
 /* Object 생성자 함수 */
 const person = new Object(); // 빈 객체 생성

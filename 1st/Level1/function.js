@@ -1,5 +1,6 @@
-// WE SOPT SERVER Seminar 1 - Function
+// WE SOPT SERVER Seminar 1 - Assignment LEVEL 1. Function
 // by HYOSITIVE
+// 2021.10.06
 
 /* -------------------- */
 /*  1. 함수 선언식 실습  */
@@ -37,7 +38,7 @@ const add = () => {
     return 1;
 };
 
-// 로직이 한 줄일 때 return은 생략 가능
+// 로직이 한 줄일 때 return 문 생략 가능
 const add = (x, y) => x + y;
 
 // 매개변수가 하나일 때 매개변수 소괄호 생략 가능
