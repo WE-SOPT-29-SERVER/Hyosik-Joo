@@ -1,6 +1,6 @@
 // WE SOPT SERVER Seminar 2 - Async-Await
 // by HYOSITIVE
-// 2021.10.09
+// 2021.10.11
 
 const members = require("./members");
 
@@ -42,11 +42,14 @@ const getOB = members => {
 
 const OnlineOB = async(members) => {
     const Online = await getOnline(members);
-    const OB = await getOB(Online);
-    console.log(OB);
+    const OnlineOB = await getOB(Online);
+    console.log(OnlineOB);
 }
-const OfflineYB = async() => {
+const OfflineYB = async(members) => {
     const Offline = await getOffline(members);
-    const YB = await getYB(Offline);
-    console.log(YB);
+    const OfflineYB = await getYB(Offline);
+    console.log(OfflineYB);
 }
+
+OnlineOB(members);
+OfflineYB(members);
