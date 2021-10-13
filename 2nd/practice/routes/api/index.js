@@ -14,5 +14,6 @@ router.get("/", (req, res) => { // Get method api/ 요청이 들어온다
 });
 
 router.use("/blog", require("./blog"));
+router.use("/users", require("./users"));
 
 module.exports = router; // 생성한 router 객체를 모듈로 반환
