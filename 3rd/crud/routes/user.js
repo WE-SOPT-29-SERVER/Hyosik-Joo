@@ -1,9 +1,14 @@
+// WE SOPT SERVER Seminar 3 - CRUD - User data
+// by HYOSITIVE
+// 2021.10.09
+
 const express = require('express');
 const router = express.Router();
+const users = require("../dbMockup/user.js");
 const util = require("../lib/util.js");
 const responseMessage = require("../constants/responseMessage");
 const statusCode = require("../constants/statusCode");
-const users = require("../dbMockup/user.js");
+const { response } = require('express');
 
 router.post("/signup", (req, res) => {
     // 일반 할당
@@ -55,9 +60,11 @@ router.post("/signup", (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-    const {email, name, password} = req.body;
+    // request body에서 데이터 가져오기
+    const {email, password} = req.body;
 
-    if (!email || !name || !password) {
+    // request data 확인 - 없다면 Null Value 반환
+    if (!email || !password) {
         return res
             .status(statuscode.BAD_REQUEST)
             .send(
@@ -67,6 +74,7 @@ router.post("/login", async (req, res) => {
             ));
     }
 
+    // 존재하는 유저인지 확인 - 없다면 No user 반환
     const user = users.filter(user => user.email === email)[0];
     if (!user) {
         return res
@@ -79,6 +87,7 @@ router.post("/login", async (req, res) => {
             );
     }
 
+    // 비밀번호 확인 - 틀렸다면 Missmatch password 반환
     if (user.password !== password) {
         return res
             .status(statusCode.BAD_REQUEST)
@@ -90,10 +99,45 @@ router.post("/login", async (req, res) => {
             );
     }
 
+    // 성공 - login success와 함께 비밀번호를 제외한 유저 정보 반환
     res.status(statusCode.OK)
         .send(
-            util.success(statusCode.OK, responseMessage.LOGIN_SUCCESS, user)
+            util.success(statusCode.OK, responseMessage.LOGIN_SUCCESS, {
+                user: {
+                    id: user.id,
+                    email: user.email,
+                    name: user.name
+                }
+            })
         );
 })
 
+// 프로필 조회 구현하기
+router.get("/profile/:id", async (req, res) => {
+    // request params에서 데이터 가져오기
+    const id = req.params.id;
+
+    // 존재하는 아이디인지 확인 - 없다면 No user 반환
+    const user = users.filter(user => user.id === Number(id))[0];
+    if (!user) {
+        return res
+            .status(statusCode.BAD_REQUEST)
+            .send(
+                util.fail(statusCode.BAD_REQUEST, responseMessage.NO_USER)
+            )
+    }
+
+    // 성공 - login success와 함께 userId 반환
+    if (user) {
+        return res
+            .status(statusCode.OK)
+            .send(
+                util.success(statusCode.OK, responseMessage.LOGIN_SUCCESS, {
+                    user: {
+                        id: user.id
+                    }
+                })
+            )
+    }
+})
 module.exports = router;
