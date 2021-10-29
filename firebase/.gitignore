@@ -64,3 +64,6 @@ node_modules/
 
 # dotenv environment variables file
 .env
+
+# Firebase service account
+functions/wesopt29-29f3e-firebase-adminsdk-hvgq6-57ad4127c1.json
