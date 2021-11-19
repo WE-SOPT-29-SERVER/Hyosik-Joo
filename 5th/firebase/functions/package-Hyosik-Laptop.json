@@ -15,7 +15,7 @@
   "main": "index.js",
   "dependencies": {
     "cookie-parser": "^1.4.5",
-    "cors": "^2.8.5",
+    "cors": "^2.8.5", 
     "dayjs": "^1.10.7",
     "dotenv": "^10.0.0",
     "eslint-config-prettier": "^8.3.0",

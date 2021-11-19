@@ -1,4 +1,4 @@
-const dotenv = require('dotenv');
+const dotenv = require('dotenv'); // .env에서 환경변수 파일을 가져오기 위한 모듈
 dotenv.config();
 
 module.exports = {
