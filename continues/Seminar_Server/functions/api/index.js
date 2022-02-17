@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const hpp = require("hpp");
 const helmet = require("helmet");
+const bodyParser = require("body-parser");
 
 // 보안 상 깃허브에 올리면 안 되는 정보를 .env라는 파일로 관리하기 위해 사용하는 모듈
 dotenv.config();
@@ -56,6 +57,6 @@ module.exports = functions
         console.log("\n\n", "[api]", `[${req.method.toUpperCase()}]`, req.originalUrl, req.body);
 
         // 맨 위에 선언된 express app 객체를 리턴
-        // 요것이 functiobns/index.js 안의 api: require("./api")에 들어가는 것.
+        // 요것이 functions/index.js 안의 api: require("./api")에 들어가는 것.
         return app(req, res);
     });

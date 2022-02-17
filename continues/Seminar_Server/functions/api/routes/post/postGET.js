@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
     client = await db.connect(req);
 
     // 빌려온 connection을 사용해 우리가 db/[파일].js에서 미리 정의한 SQL 쿼리문을 날려줍니다.
-    const post = await postDB.getPostByID(client, postId);
+    const post = await postDB.getPostById(client, postId);
 
     if (!post) return res.status(statusCode.NOT_FOUND).send(util.fail(statusCode.NOT_FOUND, responseMessage.NO_POST));
     
