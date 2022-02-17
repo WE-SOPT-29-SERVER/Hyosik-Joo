@@ -4,15 +4,25 @@ const responseMessage = require('../../../constants/responseMessage');
 const ogs = require('open-graph-scraper');
 
 module.exports = async(req, res) => {
-
     const {link} = req.body;
     try {
         const data = await ogs({ url : link });
-        const response = {
-        ogTitle: data.result.ogTitle,
-        ogDescription: data.result.ogDescription,
-        ogImage: data.result.ogImage,
-        ogUrl: data.result.ogUrl,
+        let response;
+        if (!data.result.ogImage) {
+          response = {
+            ogTitle: data.result.ogTitle,
+            ogDescription: data.result.ogDescription,
+            ogImage: '',
+            ogUrl: data.result.ogUrl,
+            }
+        }
+        else {
+          response = {
+            ogTitle: data.result.ogTitle,
+            ogDescription: data.result.ogDescription,
+            ogImage: data.result.ogImage,
+            ogUrl: data.result.ogUrl,
+            }
         }
         console.log(data.result)
         res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.READ_ONE_POST_SUCCESS, response));
